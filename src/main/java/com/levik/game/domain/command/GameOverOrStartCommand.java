@@ -12,17 +12,23 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Slf4j
-public class GameOverCommand implements Command {
+public class GameOverOrStartCommand implements Command {
 
     private static final List<String> MENU_ITEMS = Arrays.asList(
             "/menu1", "/menu2", "/menu3", "/menu4", "/menu5", "/menu6"
     );
+
+    private static final String START_PREFIX = "/start";
     private final Command commandHelper;
 
     private final UserRepository userRepository;
 
     @Override
     public ClientResponse perform(String command, String userIdentity) {
+        if (command.startsWith(START_PREFIX)) {
+            userRepository.resetByUserId(userIdentity);
+        }
+
         UserDetails userDetails = userRepository.getUserDetails(userIdentity);
 
         var clientResponse = commandHelper.perform(command, userIdentity);

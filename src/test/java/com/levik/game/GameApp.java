@@ -26,7 +26,7 @@ public class GameApp {
         Command scoreCalculator = new ScoreCalculator(commandHelper, scoreStorage, userRepository);
         Command menuCommand = new MenuCommand(scoreCalculator, userRepository);
 
-        Command gameOverCommand = new GameOverCommand(menuCommand, userRepository);
+        Command gameOverCommand = new GameOverOrStartCommand(menuCommand, userRepository);
 
         var gameCommandManager = new GameCommandManager(gameOverCommand);
 

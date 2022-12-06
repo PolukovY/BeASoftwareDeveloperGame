@@ -597,7 +597,7 @@ public class GameConfiguration {
 
     @Bean
     public Command gameOverCommand(Command menuCommand, UserRepository userRepository) {
-        return new GameOverCommand(menuCommand, userRepository);
+        return new GameOverOrStartCommand(menuCommand, userRepository);
     }
 
     @Bean
