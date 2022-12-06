@@ -27,6 +27,7 @@ public class ScoreCalculator implements Command {
         clientResponse.setScore(userDetails.getScore());
 
         userRepository.updateUserById(userIdentity, userDetails);
+        clientResponse.setBody(String.format(clientResponse.getBody(), clientResponse.getScore()));
         return clientResponse;
     }
 }

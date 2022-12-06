@@ -22,10 +22,10 @@ public class GameOverCommand implements Command {
     private final UserRepository userRepository;
 
     @Override
-    public ClientResponse perform(String command, String userIdenitity) {
-        UserDetails userDetails = userRepository.getUserDetails(userIdenitity);
+    public ClientResponse perform(String command, String userIdentity) {
+        UserDetails userDetails = userRepository.getUserDetails(userIdentity);
 
-        var clientResponse = commandHelper.perform(command, userIdenitity);
+        var clientResponse = commandHelper.perform(command, userIdentity);
 
         Set<String> commandHistory = userDetails.getCommandHistory();
 
@@ -41,7 +41,7 @@ public class GameOverCommand implements Command {
                 clientResponse.win();
             }
 
-            userRepository.resetByUserId(userIdenitity);
+            userRepository.resetByUserId(userIdentity);
 
             return clientResponse;
         }

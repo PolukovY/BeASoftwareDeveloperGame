@@ -33,7 +33,7 @@ public class GameConfiguration {
     private static final String MAIN_MENU = """
             Main Menu
                         
-            Current Score: 0 out of 15
+            Current Score: %s out of 15
             Tries: 0 out of 5
                         
             Choose which situation you would you like to explore and earn points:
@@ -556,7 +556,7 @@ public class GameConfiguration {
         var scoreStorage = new HashMap<String, Integer>();
         scoreStorage.put("/menu1_answer1", 1);
         scoreStorage.put("/menu1_answer2", 3);
-        scoreStorage.put("/menu1_answer3", 5);
+        scoreStorage.put("/menu1_answer3", 3);
 
         scoreStorage.put("/menu2_answer1", 5);
         scoreStorage.put("/menu2_answer2", 0);
