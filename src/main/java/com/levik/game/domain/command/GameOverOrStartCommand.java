@@ -9,14 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 @AllArgsConstructor
 @Slf4j
 public class GameOverOrStartCommand implements Command {
 
-    private static final List<String> MENU_ITEMS = Arrays.asList(
-            "/menu1", "/menu2", "/menu3", "/menu4", "/menu5", "/menu6"
-    );
+    private static final String MENU_PATTERN = "^/menu[0-9]+";
 
     private static final String START_PREFIX = "/start";
     private final Command commandHelper;
@@ -27,6 +26,7 @@ public class GameOverOrStartCommand implements Command {
     public ClientResponse perform(String command, String userIdentity) {
         if (command.startsWith(START_PREFIX)) {
             userRepository.resetByUserId(userIdentity);
+            return commandHelper.perform(command, userIdentity);
         }
 
         UserDetails userDetails = userRepository.getUserDetails(userIdentity);
@@ -36,7 +36,7 @@ public class GameOverOrStartCommand implements Command {
         Set<String> commandHistory = userDetails.getCommandHistory();
 
         boolean isNumberMenuReached = commandHistory.stream()
-                .filter(MENU_ITEMS::contains)
+                .filter(it -> Pattern.matches(MENU_PATTERN, it))
                 .count() > userDetails.getMaxMenu();
 
         if (isNumberMenuReached || clientResponse.getButtons().isEmpty()) {

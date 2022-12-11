@@ -23,7 +23,7 @@ public class GameApp {
         UserRepository userRepository = new UserRepository(userStorage);
 
         Command commandHelper = new CommandHelper(gameStepStorage);
-        Command scoreCalculator = new ScoreCalculator(commandHelper, scoreStorage, userRepository);
+        Command scoreCalculator = new ScoreCalculatorCommand(commandHelper, scoreStorage, userRepository);
         Command menuCommand = new MenuCommand(scoreCalculator, userRepository);
 
         Command gameOverCommand = new GameOverOrStartCommand(menuCommand, userRepository);

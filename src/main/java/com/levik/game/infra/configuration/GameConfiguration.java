@@ -587,7 +587,7 @@ public class GameConfiguration {
 
     @Bean
     public Command scoreCalculator(Command commandHelper, Map<String, Integer> scoreStorage, UserRepository userRepository) {
-        return new ScoreCalculator(commandHelper, scoreStorage, userRepository);
+        return new ScoreCalculatorCommand(commandHelper, scoreStorage, userRepository);
     }
 
     @Bean

@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Slf4j
 @AllArgsConstructor
-public class ScoreCalculator implements Command {
+public class ScoreCalculatorCommand implements Command {
     private static final int ZERO = 0;
     private final Command commandHelper;
 
